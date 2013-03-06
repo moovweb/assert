@@ -2,7 +2,6 @@ package assert
 // Testing helpers for doozer.
 
 import (
-	"pretty"
 	"reflect"
 	"testing"
 	"runtime"
@@ -20,9 +19,7 @@ func assert(t *testing.T, result bool, f func(), cd int) {
 
 func equal(t *testing.T, exp, got interface{}, cd int, args ...interface{}) {
 	fn := func() {
-		for _, desc := range pretty.Diff(exp, got) {
-			t.Error("!", desc)
-		}
+		t.Errorf("!  Failure")
 		if len(args) > 0 {
 			t.Error("!", " -", fmt.Sprint(args...))
 		}
